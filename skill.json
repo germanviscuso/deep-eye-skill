@@ -1,0 +1,23 @@
+{
+  "manifest": {
+    "publishingInformation": {
+      "locales": {
+        "en-US": {
+          "name": "Deep Eye"
+        },
+        "es-ES": {
+          "name": "Ojo Profundo"
+        }
+      }
+    },
+    "apis": {
+      "custom": {
+        "endpoint": {
+          "sourceDir": "lambda/custom",
+          "uri": "ask-deep-eye"
+        }
+      }
+    },
+    "manifestVersion": "1.0"
+  }
+}

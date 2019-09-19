@@ -1,0 +1,57 @@
+{
+	"interactionModel": {
+		"languageModel": {
+			"invocationName": "deep eye",
+			"intents": [
+				{
+					"name": "EyeIntent",
+					"samples": [
+						"what can you see",
+						"what do you see",
+						"tell me what you're seeing",
+						"what's in front of you",
+						"tell me what are you seeing",
+						"what are you seeing",
+						"what's in your sight",
+						"what have you seen",
+						"what is it that you see"
+					]
+				},
+				{
+					"name": "AMAZON.CancelIntent",
+					"samples": []
+				},
+				{
+					"name": "AMAZON.HelpIntent",
+					"samples": []
+				},
+				{
+					"name": "AMAZON.StopIntent",
+					"samples": []
+				},
+				{
+					"name": "AMAZON.MoreIntent",
+					"samples": [
+						"more information",
+						"tell me more",
+						"what else",
+						"what else do you see",
+						"what else can you see"
+					]
+				},
+				{
+					"name": "AMAZON.NextIntent",
+					"samples": [
+						"what's next",
+						"what comes next"
+					]
+				}
+				,
+				{
+					"name": "AMAZON.RepeatIntent",
+					"samples": []
+				}
+			]
+		}
+	}
+}

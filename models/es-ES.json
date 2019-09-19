@@ -1,0 +1,59 @@
+{
+	"interactionModel": {
+		"languageModel": {
+			"invocationName": "ojo profundo",
+			"intents": [
+				{
+					"name": "EyeIntent",
+					"samples": [
+						"que puedes ver",
+						"que ves",
+						"dime lo que estás viendo",
+						"qué estás viendo",
+						"que tienes enfrente",
+						"que que hay enfrente tuyo",
+						"dime lo que estás viendo",
+						"qué hay en tu campo de visión",
+						"que has visto",
+						"qué es lo que ves"
+					]
+				},
+				{
+					"name": "AMAZON.CancelIntent",
+					"samples": []
+				},
+				{
+					"name": "AMAZON.HelpIntent",
+					"samples": []
+				},
+				{
+					"name": "AMAZON.StopIntent",
+					"samples": []
+				},
+				{
+					"name": "AMAZON.MoreIntent",
+					"samples": [
+						"más información",
+						"dame más información",
+						"dime más",
+						"que más",
+						"que más ves",
+						"que otra cosa ves"
+					]
+				},
+				{
+					"name": "AMAZON.NextIntent",
+					"samples": [
+						"que sigue",
+						"que hacemos a continuación"
+					]
+				}
+				,
+				{
+					"name": "AMAZON.RepeatIntent",
+					"samples": []
+				}
+			]
+		}
+	}
+}
