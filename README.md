@@ -23,13 +23,11 @@
 - Statement:
 - Effect: Allow
 - Action:
-- sqs:DeleteMessage
 - sqs:GetQueueAttributes
 - sqs:GetQueueUrl
 - sqs:ReceiveMessage
-- sqs:SendMessage
 
-(or you might want to use the predefined AmazonSQSFullAccess policy. Use it at your own risk!)
+(or you might want to use the predefined AmazonSQSFullAccess policy. But use it at your own risk!)
 
 ## Running the Demo
 

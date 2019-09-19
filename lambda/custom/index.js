@@ -60,6 +60,14 @@ const EyeIntentHandler = {
       }
     }
 
+    if(shortTermMemory.size === 0) {
+      speechOutput = handlerInput.t('BLIND_MSG');
+      return responseBuilder
+        .speak(speechOutput)
+        .reprompt(speechOutput)
+        .getResponse();
+    }
+
     let higherProb = [], highProb = [], lowProb = [], lowerProb = [];
 
     for (const [k, v] of shortTermMemory) {
