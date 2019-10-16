@@ -27,7 +27,8 @@
 - sqs:GetQueueUrl
 - sqs:ReceiveMessage
 
-(or you might want to use the predefined AmazonSQSFullAccess policy. But use it at your own risk!)
+(or you might want to use the predefined AmazonSQSFullAccess policy. But u 
+se it at your own risk!)
 
 ## Running the Demo
 

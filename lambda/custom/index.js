@@ -36,9 +36,13 @@ const EyeIntentHandler = {
     //if (attributes.ApproximateNumberOfMessages) {
       //speechOutput += handlerInput.t('NUMBER_OF_MESSAGES', {count: attributes.ApproximateNumberOfMessages});
     //}
-
     const messages = await queue.retrieveMessage(10, 60);
-    //console.log(JSON.stringify(messages));
+    if(!messages){
+      return handlerInput.responseBuilder
+        .speak(handlerInput.t('BLIND_MSG'))
+        .getResponse();
+    }
+    console.log(JSON.stringify(messages));
     const shortTermMemory = new Map();
     for(let message of messages){
       //console.log(message.Body);
@@ -86,49 +90,17 @@ const EyeIntentHandler = {
         lowerProb.push(k);
     }
 
-    if(higherProb.length > 0){
-      speechOutput += handlerInput.t('HIGHER_PROBABILITY_MSG');
-      higherProb.forEach((object, index) => {
-        speechOutput += handlerInput.t('ARTICLE_MSG', {object: object});
-        if (index === Object.keys(higherProb).length - 2)
-            speechOutput += handlerInput.t('CONJUNCTION_MSG');
-        else
-            speechOutput += ', ';
-      });
-    }
+    if(higherProb.length > 0)
+      speechOutput += createSpeechBasedOnProbablility(handlerInput, speechOutput, higherProb, 'HIGHER_PROBABILITY_MSG', 'ARTICLE_MSG', 'CONJUNCTION_MSG');
 
-    if(highProb.length > 0){
-      speechOutput += handlerInput.t('HIGH_PROBABILITY_MSG');
-      highProb.forEach((object, index) => {
-        speechOutput += handlerInput.t('ARTICLE_MSG', {object: object});
-        if (index === Object.keys(highProb).length - 2)
-            speechOutput += handlerInput.t('CONJUNCTION_MSG');
-        else
-            speechOutput += ', ';
-      });
-    }
+    if(highProb.length > 0)
+      speechOutput += createSpeechBasedOnProbablility(handlerInput, speechOutput, highProb, 'HIGH_PROBABILITY_MSG', 'ARTICLE_MSG', 'CONJUNCTION_MSG');
 
-    if(lowProb.length > 0){
-      speechOutput += handlerInput.t('LOW_PROBABILITY_MSG');
-      lowProb.forEach((object, index) => {
-        speechOutput += handlerInput.t('ARTICLE_MSG', {object: object});
-        if (index === Object.keys(lowProb).length - 2)
-            speechOutput += handlerInput.t('CONJUNCTION_MSG');
-        else
-            speechOutput += ', ';
-      });
-    }
+    if(lowProb.length > 0)
+      speechOutput += createSpeechBasedOnProbablility(handlerInput, speechOutput, lowProb, 'LOW_PROBABILITY_MSG', 'ARTICLE_MSG', 'CONJUNCTION_MSG');
 
-    if(lowerProb.length > 0){
-      speechOutput += handlerInput.t('LOWER_PROBABILITY_MSG');
-      lowerProb.forEach((object, index) => {
-        speechOutput += handlerInput.t('ARTICLE_MSG', {object: object});
-        if (index === Object.keys(lowerProb).length - 2)
-            speechOutput += handlerInput.t('CONJUNCTION_MSG');
-        else
-            speechOutput += ', ';
-      });
-    }
+    if(lowerProb.length > 0)
+      speechOutput += createSpeechBasedOnProbablility(handlerInput, speechOutput, lowerProb, 'LOWER_PROBABILITY_MSG', 'ARTICLE_MSG', 'CONJUNCTION_MSG');
 
     return responseBuilder
       .speak(speechOutput)
@@ -210,6 +182,19 @@ const LocalisationRequestInterceptor = {
       }
   }
 };
+
+// Auxiliary function
+function createSpeechBasedOnProbablility(handlerInput, speechOutput, probablilityArray, messageKey, articleKey, andKey) {
+  speechOutput += handlerInput.t(messageKey);
+  probablilityArray.forEach((object, index) => {
+    speechOutput += handlerInput.t(articleKey, {object: object});
+    if (index === Object.keys(probablilityArray).length - 2)
+        speechOutput += handlerInput.t(andKey);
+    else
+        speechOutput += ', ';
+  });
+  return speechOutput;
+}
 
 // Exports handler function and setup ===================================================
 const skillBuilder = Alexa.SkillBuilders.custom();
